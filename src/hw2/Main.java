@@ -1,6 +1,5 @@
 package hw2;
 
-import jdk.javadoc.internal.doclets.formats.html.resources.standard;
 import lesson2.MyArrayList;
 
 public class Main {
