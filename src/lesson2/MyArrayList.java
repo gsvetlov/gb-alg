@@ -1,5 +1,7 @@
 package lesson2;
 
+import java.util.Arrays;
+
 public class MyArrayList<T extends Comparable<T>> {
     private T[] list;
     private int size;
@@ -17,14 +19,14 @@ public class MyArrayList<T extends Comparable<T>> {
     }
 
     public void add(T item) {
-        //check size
+        checkSize();
         list[size] = item;
         size++;
     }
 
     public void add(int index, T item) {
-        //check size
-        //check index
+        checkIndex(index);
+        checkSize();
         for (int i = size; i > index; i--) {
             list[i] = list[i - 1];
         }
@@ -46,11 +48,12 @@ public class MyArrayList<T extends Comparable<T>> {
     }
 
     public void remove(int index) {
-        //check index
+        checkIndex(index);
+        size--;
         for (int i = index; i < size; i++) {
             list[i] = list[i + 1];
         }
-        size--;
+        list[size] = null;
     }
 
     public boolean remove(T item) {
@@ -71,7 +74,7 @@ public class MyArrayList<T extends Comparable<T>> {
     }
 
     public T get(int index) {
-        //check index
+        checkIndex(index);
         return list[index];
     }
 
@@ -150,4 +153,26 @@ public class MyArrayList<T extends Comparable<T>> {
         }
     }
 
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException(index);
+        }
+    }
+
+    private void checkSize() {
+        if (size < list.length)
+            return;
+        int newSize = list.length + list.length / 2 + 1;
+        if (newSize < size) {
+            throw new RuntimeException("Maximum collection capacity exceeded.");
+        }
+        list = Arrays.copyOf(list, newSize);
+    }
+
+    public T replace(int index, T value) {
+        checkIndex(index);
+        T replacedValue = list[index];
+        list[index] = value;
+        return replacedValue;
+    }
 }
