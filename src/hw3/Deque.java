@@ -15,10 +15,8 @@ public class Deque<T extends Comparable<T>> {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Deque { ");
-        sb.append(Arrays.toString(array)).append(";\n").append("start: ").append(start).append("; ")
-                .append("end: ").append(end).append("; ").append("size: ").append(size).append(";")
-                .append("}");
+        StringBuilder sb = new StringBuilder("Deque {");
+        sb.append("size: ").append(size).append("; ").append(Arrays.toString(array)).append("}");
         return sb.toString();
     }
 
@@ -61,9 +59,7 @@ public class Deque<T extends Comparable<T>> {
         T item = array[elementIndex];
         array[elementIndex] = null;
         size--;
-        if (!isEmpty()) {
-            action.getAsInt();
-        }
+        action.getAsInt();
         return item;
     }
 
