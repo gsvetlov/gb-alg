@@ -37,8 +37,7 @@ public class MyQueue<T> {
 
     public void insert(T item) {
         if (isFull()) {
-            //Расширение массива***
-            throw new RuntimeException("Queue isFull");
+            increaseCapacity();
         }
         size++;
         list[end] = item;
@@ -64,5 +63,19 @@ public class MyQueue<T> {
 
     public boolean isFull() {
         return size == list.length;
+    }
+
+    private void increaseCapacity() {
+        int newCapacity = list.length + list.length / 2 + 1;
+        if (newCapacity < list.length) {
+            throw new RuntimeException("Capacity can't be increased!");
+        }
+        reCapacity(newCapacity);
+    }
+
+    private void reCapacity(int newSize) {
+        T[] temp = (T[]) new Object[newSize];
+        System.arraycopy(list, 0, temp, 0, size);
+        list = temp;
     }
 }

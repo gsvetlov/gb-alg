@@ -27,8 +27,7 @@ public class MyPriorityQueue<T extends Comparable<T>> {
 
     public void insert(T item) {
         if (isFull()) {
-            // расширение массива
-            throw new StackOverflowError();
+            increaseCapacity();
         }
         list[size] = item;
         size++;
@@ -68,5 +67,13 @@ public class MyPriorityQueue<T extends Comparable<T>> {
         T temp = list[index1];
         list[index1] = list[index2];
         list[index2] = temp;
+    }
+
+    private void increaseCapacity() {
+        int newCapacity = list.length + list.length / 2 + 1;
+        if (newCapacity < list.length) {
+            throw new RuntimeException("Capacity can't be increased!");
+        }
+        reCapacity(newCapacity);
     }
 }

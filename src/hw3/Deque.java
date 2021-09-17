@@ -2,7 +2,6 @@ package hw3;
 
 import java.util.Arrays;
 import java.util.function.IntSupplier;
-import java.util.function.Supplier;
 
 public class Deque<T extends Comparable<T>> {
     private T[] array;
