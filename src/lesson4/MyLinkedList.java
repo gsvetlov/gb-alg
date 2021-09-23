@@ -182,6 +182,19 @@ public class MyLinkedList<T> implements Iterable<T> {
         return size;
     }
 
+    public int indexOf(T item) {
+        int count = 0;
+        Node current = first;
+        while (count < size) {
+            if (current.value.equals(item)) {
+                return count;
+            }
+            current = current.next;
+            count++;
+        }
+        return -1;
+    }
+
     @Override
     public String toString() {
         Node current = first;
