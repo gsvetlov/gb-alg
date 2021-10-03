@@ -2,6 +2,7 @@ package lesson7;
 
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Graph {
     private int vertexCount;
@@ -27,8 +28,8 @@ public class Graph {
         return edgeCount;
     }
 
-    public LinkedList<Integer> getAdjList(int vertex) {
-        return (LinkedList<Integer>) adjList[vertex].clone();
+    public List<Integer> getAdjList(int vertex) {
+        return Collections.unmodifiableList(adjList[vertex]);
     }
 
     public void addEdge(int v1, int v2) {
