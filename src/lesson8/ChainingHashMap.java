@@ -92,4 +92,16 @@ public class ChainingHashMap<K, V> {
         }
         return sb.toString();
     }
+
+    public V remove(K key) {
+        checkKeyNotNull(key);
+        int i = hash(key);
+        for (Node node : st[i]) {
+            if (node.key.equals(key)) {
+                st[i].remove(node);
+                return node.value;
+            }
+        }
+        return null;
+    }
 }
